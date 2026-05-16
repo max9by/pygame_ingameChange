@@ -25,7 +25,6 @@ class SuperManager:
         self.running = True
 
     def handle_enter_key(self):
-        """Behandelt die Enter-Taste zum Wechsel des Spiels"""
         self.current_game_index += 1
         if self.current_game_index >= len(self.game_list):
             self.current_game_index = 0
