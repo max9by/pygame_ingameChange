@@ -10,11 +10,8 @@ class GameTwo(BaseGame):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    # Münze sammeln und Spiel wechseln
+                    # Münze sammeln
                     self.settings.gold_coins -= 1
-                if event.key == pygame.K_RETURN:
-                    self.active = False # Signal zum Beenden
-                    self.next_game = 0  # Index für das nächste Spiel (Spiel 1)
 
     def update(self):
         pass

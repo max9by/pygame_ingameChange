@@ -34,6 +34,8 @@ class SuperManager:
             for event in events:
                 if event.type == pygame.QUIT:
                     self.running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
 
             # Logik des Sub-Spiels
             current_game.handle_events(events)
