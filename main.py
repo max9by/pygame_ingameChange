@@ -24,6 +24,13 @@ class SuperManager:
         self.current_game_index = 0
         self.running = True
 
+    def handle_enter_key(self):
+        """Behandelt die Enter-Taste zum Wechsel des Spiels"""
+        self.current_game_index += 1
+        if self.current_game_index >= len(self.game_list):
+            self.current_game_index = 0
+        self.switch_game(self.current_game_index)
+
     def run(self):
         while self.running:
             # Aktuelles Sub-Spiel holen
@@ -36,6 +43,7 @@ class SuperManager:
                     self.running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
+                        self.handle_enter_key()
 
             # Logik des Sub-Spiels
             current_game.handle_events(events)
@@ -46,20 +54,11 @@ class SuperManager:
             pygame.display.flip()
             self.clock.tick(self.settings.fps)
 
-            # Check: Soll das Spiel gewechselt werden?
-            if not current_game.active:
-                self.switch_game(current_game.next_game)
-
         pygame.quit()
         sys.exit()
 
     def switch_game(self, next_index):
-        if next_index is not None and next_index < len(self.game_list):
-            # Reset des alten Spiels (falls nötig)
-            self.game_list[self.current_game_index].active = True 
-            # Wechsel zum neuen Spiel
-            self.current_game_index = next_index
-            print(f"Wechsel zu Spiel Index: {next_index}")
+        print(f"Wechsel zu Spiel Index: {next_index}")
 
 if __name__ == "__main__":
     manager = SuperManager()

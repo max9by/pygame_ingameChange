@@ -12,9 +12,9 @@ class GameOne(BaseGame):
                 if event.key == pygame.K_SPACE:
                     # Münze sammeln und Spiel wechseln
                     self.settings.gold_coins += 1
-                if event.key == pygame.K_RETURN:
-                    self.active = False # Signal zum Beenden
-                    self.next_game = 1  # Index für das nächste Spiel (Spiel 2)
+                # if event.key == pygame.K_RETURN:
+                #     self.active = False # Signal zum Beenden
+                #     self.next_game = 1  # Index für das nächste Spiel (Spiel 2)
 
     def update(self):
         pass
