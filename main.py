@@ -1,0 +1,64 @@
+from games.game_two import GameTwo
+import pygame
+import sys
+from settings import SuperSettings
+from games.game_one import GameOne
+# Importiere hier auch GameTwo, GameThree...
+
+class SuperManager:
+    def __init__(self):
+        pygame.init()
+        self.settings = SuperSettings()
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        pygame.display.set_caption("Mein Super Pygame Projekt")
+        self.clock = pygame.time.Clock()
+
+        # Spielauswahl als Liste/Array
+        # Wir initialisieren die Spiele hier oder dynamisch beim Wechsel
+        self.game_list = [
+            GameOne(self.screen, self.settings),
+            GameTwo(self.screen, self.settings), 
+            # GameThree(self.screen, self.settings)
+        ]
+        
+        self.current_game_index = 0
+        self.running = True
+
+    def run(self):
+        while self.running:
+            # Aktuelles Sub-Spiel holen
+            current_game = self.game_list[self.current_game_index]
+            
+            # Events zentral sammeln
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    self.running = False
+
+            # Logik des Sub-Spiels
+            current_game.handle_events(events)
+            current_game.update()
+            
+            # Zeichnen
+            current_game.draw()
+            pygame.display.flip()
+            self.clock.tick(self.settings.fps)
+
+            # Check: Soll das Spiel gewechselt werden?
+            if not current_game.active:
+                self.switch_game(current_game.next_game)
+
+        pygame.quit()
+        sys.exit()
+
+    def switch_game(self, next_index):
+        if next_index is not None and next_index < len(self.game_list):
+            # Reset des alten Spiels (falls nötig)
+            self.game_list[self.current_game_index].active = True 
+            # Wechsel zum neuen Spiel
+            self.current_game_index = next_index
+            print(f"Wechsel zu Spiel Index: {next_index}")
+
+if __name__ == "__main__":
+    manager = SuperManager()
+    manager.run()
