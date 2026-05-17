@@ -1,9 +1,8 @@
-from games.game_two import GameTwo
 import pygame
 import sys
 from settings import SuperSettings
 from games.game_one import GameOne
-# Importiere hier auch GameTwo, GameThree...
+from games.game_two import GameTwo
 
 class SuperManager:
     def __init__(self):
