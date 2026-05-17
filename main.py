@@ -29,6 +29,13 @@ class SuperManager:
         if self.current_game_index >= len(self.game_list):
             self.current_game_index = 0
         self.switch_game(self.current_game_index)
+        
+   #    Variable change of games using modolo operation 
+   # def handle_enter_key(self):
+   #     """Behandelt die Enter-Taste zum Wechsel des Spiels"""
+   #     # Zum nächsten Spiel wechseln (zyklisch)
+   #     next_index = (self.current_game_index + 1) % len(self.game_list)
+   #     self.switch_game(next_index)
 
     def run(self):
         while self.running:
