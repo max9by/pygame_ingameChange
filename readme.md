@@ -11,3 +11,4 @@ projekt_ordner/
     ├── game_one.py
     ├── game_two.py
     └── game_three.py
+by me & Marco Gilg
