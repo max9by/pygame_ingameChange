@@ -50,7 +50,7 @@ class SuperManager:
             
             # Zeichnen
             current_game.draw()
-            pygame.display.flip()
+            pygame.display.flip() # = pygame.display.update()
             self.clock.tick(self.settings.fps)
 
         pygame.quit()
