@@ -1,3 +1,6 @@
+Basic "Game-Engine" - an example on how to switch between several games in pygame while the basic game window stays the same. Variables can be in-game or in the super game class.
+
+
 projekt_ordner/ 
 │ 
 ├── main.py              # Der "Manager", der zwischen Spielen wechselt
