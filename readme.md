@@ -1,5 +1,5 @@
-projekt_ordner/ /n
-│ /n
+projekt_ordner/ 
+│ 
 ├── main.py              # Der "Manager", der zwischen Spielen wechselt
 ├── settings.py          # Die globalen SuperSettings
 ├── base_game.py         # Die Superklasse (Super_init)
