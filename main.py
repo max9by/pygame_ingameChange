@@ -14,20 +14,26 @@ class SuperManager:
 
         # Spielauswahl als Liste/Array
         # Wir initialisieren die Spiele hier oder dynamisch beim Wechsel
-        self.game_list = [
-            GameOne(self.screen, self.settings),
-            GameTwo(self.screen, self.settings), 
+        self.game_dict = {
+            "one": GameOne(self.screen, self.settings),
+            "two": GameTwo(self.screen, self.settings), 
             # GameThree(self.screen, self.settings)
-        ]
-        
-        self.current_game_index = 0
+        }
+
+        self.current_game = "one"
+        self.change_game = False
         self.running = True
 
     def handle_enter_key(self):
-        self.current_game_index += 1
-        if self.current_game_index >= len(self.game_list):
-            self.current_game_index = 0
-        self.switch_game(self.current_game_index)
+        match self.current_game:
+            case "one":
+                self.current_game = "two"
+                self.change_game = True
+            case "two":
+                self.current_game = "one"
+                self.change_game = True
+            case _:
+                self.current_game = None
         
    #    Variable change of games using modolo operation 
    # def handle_enter_key(self):
@@ -38,8 +44,10 @@ class SuperManager:
 
     def run(self):
         while self.running:
-            # Aktuelles Sub-Spiel holen
-            current_game = self.game_list[self.current_game_index]
+            if self.change_game:
+                # Aktuelles Sub-Spiel holen
+                current_game = self.game_dict[self.current_game]
+                self.change_game = False
             
             # Events zentral sammeln
             events = pygame.event.get()
@@ -61,9 +69,6 @@ class SuperManager:
 
         pygame.quit()
         sys.exit()
-
-    def switch_game(self, next_index):
-        print(f"Wechsel zu Spiel Index: {next_index}")
 
 if __name__ == "__main__":
     manager = SuperManager()
